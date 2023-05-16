@@ -19,18 +19,20 @@ export class UserController implements IUserController{
         }
     }
 
-    public login = async (login: inputLogin): Promise<IHttpsResponse> => {
+    public listUsers = async (): Promise<IHttpsResponse> => {
+        console.log('entrou')
         try {
-            const userLogin = await this.userDatabase.login(login);
+            const listUsers = await this.userDatabase.listUsers();
+            console.log(listUsers)
             return {
                 message: 'Ok',
                 statusCode: 200,
-                data: userLogin
+                data: [ listUsers ]
             }
         } catch (error) {
             return {
                 message: error.message,
-                statusCode: 404
+                statusCode: 204
             }
         }
     }
