@@ -1,6 +1,7 @@
 import { Card, ListItem, UnorderedList } from "@chakra-ui/react";
 import useSWR from 'swr'
 import { baseURL } from "../api/api";
+import FormUser from "./Form";
 
 interface ListUsers {
     id: string;
@@ -25,6 +26,7 @@ export default function Profile() {
                     <ListItem>{user.email}</ListItem>
                     <ListItem>{user.phone}</ListItem>
                     <ListItem>{user.gender}</ListItem>
+                    <FormUser method="update" id={user.id}/>
                 </>
             ))}
             </UnorderedList>
