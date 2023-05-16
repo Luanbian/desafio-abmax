@@ -13,11 +13,18 @@ export class UserController implements IUserController{
     }
 
     public login = async (login: inputLogin): Promise<IHttpsResponse> => {
-        const userLogin = await this.userDatabase.login(login);
-        return {
-            message: 'Ok',
-            statusCode: 200,
-            data: userLogin
+        try {
+            const userLogin = await this.userDatabase.login(login);
+            return {
+                message: 'Ok',
+                statusCode: 200,
+                data: userLogin
+            }
+        } catch (error) {
+            return {
+                message: error.message,
+                statusCode: 404
+            }
         }
     }
 }

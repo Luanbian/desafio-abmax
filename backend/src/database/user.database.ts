@@ -10,7 +10,7 @@ export class UserDatabase implements IUserDatabase {
 
     async login(login: inputLogin) {
         const existingUser = await knex.select('email', 'password').from(this.dbName).where(login);
-        if(existingUser.length != 0) return 'Usuário já existe'
-        return existingUser;
+        if(existingUser.length != 0) return existingUser
+        return Promise.reject({message: 'Usuário não encontrado'})
     }
 }
