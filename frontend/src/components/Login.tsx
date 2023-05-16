@@ -1,5 +1,5 @@
-import { Card, CardHeader, Heading, CardBody, InputGroup, Input, InputLeftAddon, ButtonGroup ,Button } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { Card, CardHeader, Heading, CardBody, InputGroup, Input, InputLeftAddon, ButtonGroup, Button, CardFooter } from '@chakra-ui/react'
+import { useRef, useState } from 'react'
 import { baseURL } from '../api/api'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -7,8 +7,9 @@ import axios from 'axios'
 export default function Login() {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+    const [userNotFound, setUserNotFound] = useState(false);
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if(emailRef.current && passwordRef.current) {
             const inputEmailValue = emailRef.current.value;
             const inputPasswordValue = passwordRef.current.value;
@@ -17,7 +18,9 @@ export default function Login() {
                     email: inputEmailValue,
                     password: inputPasswordValue
                 }
-                axios.post(`${baseURL}/login`, loginRequest).then(response => console.log(response));
+                const request = await axios.post(`${baseURL}/login`, loginRequest);
+                const response = request.data.message;
+                response == 'Ok' ? (window.location.href = '/register') : setUserNotFound(true);
             }
         }
     }
@@ -47,6 +50,9 @@ export default function Login() {
                     </Link>
                 </Button>
             </ButtonGroup>
+            {userNotFound && (
+                <CardFooter color='red'>usuário não encontrado, faça seu cadastro</CardFooter>
+            )}
         </Card>
    )
 }
