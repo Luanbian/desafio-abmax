@@ -1,9 +1,9 @@
-import { inputNewUser, IUserController, IHttpsResponse, IUserDatabase, inputLogin } from "../interfaces/interface";
+import { inputUser, IUserController, IHttpsResponse, IUserDatabase, inputLogin } from "../interfaces/interface";
 
 export class UserController implements IUserController{
     constructor(private readonly userDatabase: IUserDatabase){}
 
-    public register = async (register: inputNewUser): Promise<IHttpsResponse> => {
+    public register = async (register: inputUser): Promise<IHttpsResponse> => {
         try {
             const newRegister = await this.userDatabase.insertUser(register);
             return {
@@ -35,7 +35,7 @@ export class UserController implements IUserController{
         }
     }
 
-    public update = async(body: inputNewUser, id: string): Promise<IHttpsResponse> => {
+    public update = async(body: inputUser, id: string): Promise<IHttpsResponse> => {
         try {
             const updateUser = await this.userDatabase.update(body, id);
             return {

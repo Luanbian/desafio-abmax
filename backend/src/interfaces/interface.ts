@@ -1,14 +1,14 @@
 export interface IUserController {
-  register(register: inputNewUser): Promise<IHttpsResponse>;
+  register(register: inputUser): Promise<IHttpsResponse>;
   listUsers(): Promise<IHttpsResponse>;
-  update(body: inputNewUser, id: string): Promise<IHttpsResponse>;
+  update(body: inputUser, id: string): Promise<IHttpsResponse>;
   delete(id: string):Promise<IHttpsResponse>;
 }
 
 export interface IUserDatabase {
-  insertUser(register: inputNewUser): Promise<number[] | undefined>;
+  insertUser(register: inputUser): Promise<number[] | undefined>;
   listUsers(): Promise<any[]>;
-  update(body: inputNewUser, id: string): Promise<number | undefined>;
+  update(body: inputUser, id: string): Promise<number | undefined>;
   delete(id: string): Promise<number | undefined>;
 }
 
@@ -18,7 +18,7 @@ export interface IHttpsResponse {
   data?: any;
 }
 
-export interface inputNewUser {
+export interface inputUser {
   firstName: string;
   lastName: string;
   email: string;

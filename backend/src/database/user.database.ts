@@ -1,9 +1,9 @@
-import { IUserDatabase, inputNewUser } from "../interfaces/interface";
+import { IUserDatabase, inputUser } from "../interfaces/interface";
 import knex from "../config/database";
 
 export class UserDatabase implements IUserDatabase {
     public dbName = 'users'
-    async insertUser(register: inputNewUser) {
+    async insertUser(register: inputUser) {
         const existingUser = await knex.select('email').from(this.dbName).where('email', register.email);
         if(existingUser.length != 0) return Promise.reject({message: 'E-mail já registrado'});
         const result = await knex(this.dbName).insert(register);
@@ -16,7 +16,7 @@ export class UserDatabase implements IUserDatabase {
         return list;
     }
 
-    async update(body: inputNewUser, id: string) {
+    async update(body: inputUser, id: string) {
         const updateUser = await knex(this.dbName).update(body).where('id', id);
         return updateUser;
     }
