@@ -20,7 +20,7 @@ export default function Login() {
                 }
                 const request = await axios.post(`${baseURL}/login`, loginRequest);
                 const response = request.data.message;
-                response == 'Ok' ? (window.location.href = '/register') : setUserNotFound(true);
+                response == 'Ok' ? (window.location.href = '/profile') : setUserNotFound(true);
             }
         }
     }
