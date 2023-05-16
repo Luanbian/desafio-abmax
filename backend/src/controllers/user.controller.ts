@@ -20,19 +20,33 @@ export class UserController implements IUserController{
     }
 
     public listUsers = async (): Promise<IHttpsResponse> => {
-        console.log('entrou')
         try {
             const listUsers = await this.userDatabase.listUsers();
-            console.log(listUsers)
             return {
                 message: 'Ok',
                 statusCode: 200,
-                data: [ listUsers ]
+                data: listUsers
             }
         } catch (error) {
             return {
                 message: error.message,
                 statusCode: 204
+            }
+        }
+    }
+
+    public update = async(body: inputNewUser, id: string): Promise<IHttpsResponse> => {
+        try {
+            const updateUser = await this.userDatabase.update(body, id);
+            return {
+                message: 'Ok',
+                statusCode: 200,
+                data: updateUser
+            }
+        } catch (error) {
+            return {
+                message: error.message,
+                statusCode: 400
             }
         }
     }

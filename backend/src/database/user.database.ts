@@ -15,4 +15,9 @@ export class UserDatabase implements IUserDatabase {
         if(list.length == 0) return Promise.reject({message: 'no-content'});
         return list;
     }
+
+    async update(body: inputNewUser, id: string) {
+        const updateUser = await knex(this.dbName).update(body).where('id', id);
+        return updateUser;
+    }
 }
