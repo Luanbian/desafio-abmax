@@ -1,4 +1,4 @@
-import { Card, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Button, Card, ListItem, UnorderedList } from "@chakra-ui/react";
 import useSWR from 'swr'
 import { baseURL } from "../api/api";
 import FormUser from "./Form";
@@ -14,6 +14,11 @@ interface ListUsers {
 
 export default function Profile() {
     const { data: users, error } = useSWR<ListUsers[]>(`${baseURL}/user`);
+
+    const handleDelete = () => {
+        console.log('oi')
+    }
+
     return (
         <Card>
             <h1>Seus contatos</h1>
@@ -27,6 +32,7 @@ export default function Profile() {
                     <ListItem>{user.phone}</ListItem>
                     <ListItem>{user.gender}</ListItem>
                     <FormUser method="update" id={user.id} inputs={user}/>
+                    <Button variant='solid' colorScheme='red' onClick={handleDelete}> Delete </Button>
                 </div>
             ))}
             </UnorderedList>
