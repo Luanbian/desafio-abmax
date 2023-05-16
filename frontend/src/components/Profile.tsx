@@ -26,12 +26,11 @@ export default function Profile() {
             <UnorderedList>
             {users && users.map((user: ListUsers) => (
                 <div key={user.id}>
-                    <ListItem>{user.id}</ListItem>
-                    <ListItem>{user.firstName}</ListItem>
-                    <ListItem>{user.lastName}</ListItem>
-                    <ListItem>{user.email}</ListItem>
-                    <ListItem>{user.phone}</ListItem>
-                    <ListItem>{user.gender}</ListItem>
+                    <ListItem>Nome: {user.firstName}</ListItem>
+                    <ListItem>Sobrenome: {user.lastName}</ListItem>
+                    <ListItem>Email: {user.email}</ListItem>
+                    <ListItem>Telefone: {user.phone}</ListItem>
+                    <ListItem>Genero: {user.gender}</ListItem>
                     <Popover>
                         <PopoverTrigger>
                             <Button variant='solid' colorScheme="green">Editar</Button>
