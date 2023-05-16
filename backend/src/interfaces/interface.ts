@@ -2,7 +2,7 @@ export interface IUserController {
     register(register: inputNewUser): Promise<IHttpsResponse>;
 }
 
-export interface IRegisterDatabase {
+export interface IUserDatabase {
     insertUser(register: inputNewUser): Promise<number[] | undefined>;
 }
 

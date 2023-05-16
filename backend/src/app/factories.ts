@@ -1,10 +1,10 @@
-import { UserController } from "../controllers/register.controller";
-import { RegisterDatabase } from "../database/register.database";
+import { UserController } from "../controllers/user.controller";
+import { UserDatabase } from "../database/user.database";
 
-export const makeRegisterDatabase = () => {
-    return new RegisterDatabase();
+export const makeUserDatabase = () => {
+    return new UserDatabase();
 }
 export const makeUserController = () => {
-    const registerDatabase = makeRegisterDatabase();
-    return new UserController(registerDatabase);
+    const userDatabase = makeUserDatabase();
+    return new UserController(userDatabase);
 }
