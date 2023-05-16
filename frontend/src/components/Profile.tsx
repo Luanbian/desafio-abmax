@@ -2,6 +2,7 @@ import { Button, Card, ListItem, UnorderedList } from "@chakra-ui/react";
 import useSWR from 'swr'
 import { baseURL } from "../api/api";
 import FormUser from "./Form";
+import axios from "axios";
 
 interface ListUsers {
     id: string;
@@ -15,8 +16,8 @@ interface ListUsers {
 export default function Profile() {
     const { data: users, error } = useSWR<ListUsers[]>(`${baseURL}/user`);
 
-    const handleDelete = () => {
-        console.log('oi')
+    const handleDelete = async (id: string) => {
+        await axios.delete(`${baseURL}/user/${id}`)
     }
 
     return (
@@ -32,7 +33,7 @@ export default function Profile() {
                     <ListItem>{user.phone}</ListItem>
                     <ListItem>{user.gender}</ListItem>
                     <FormUser method="update" id={user.id} inputs={user}/>
-                    <Button variant='solid' colorScheme='red' onClick={handleDelete}> Delete </Button>
+                    <Button variant='solid' colorScheme='red' onClick={() => handleDelete(user.id)}> Delete </Button>
                 </div>
             ))}
             </UnorderedList>
