@@ -39,10 +39,10 @@ export default function FormUser({ method, id, inputs }: FormProps) {
                 phone: phone.value,
                 gender: gender
             }
-            if(method === 'created') {
+            if(method === 'create') {
                 const request = await axios.post(`${baseURL}/user`, registerRequest);
                 const response = request.data.message;
-                response == 'created' ? (window.location.href = '/profile') : setUserExist(true);
+                response == 'created' ? (window.location.href = '/') : setUserExist(true);
             } else {
                 await axios.put(`${baseURL}/user/${id}`, registerRequest);
             }

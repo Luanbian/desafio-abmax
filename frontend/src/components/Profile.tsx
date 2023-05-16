@@ -4,6 +4,7 @@ import { baseURL } from "../api/api";
 import FormUser from "./Form";
 import axios from "axios";
 import Contacts from "./Contacts";
+import { Link } from "react-router-dom";
 
 interface ListUsers {
     id: string;
@@ -23,8 +24,11 @@ export default function Profile() {
 
     return (
         <Card>
-            <h1>Seus contatos</h1>
             <UnorderedList>
+            <h1>Seus contatos</h1>
+            <Button variant='solid' colorScheme='blue'> 
+                <Link to='/register'>Criar</Link>
+            </Button>
             {users && users.map((user: ListUsers) => (
                 <div key={user.id}>
                     <ListItem>Nome: {user.firstName}</ListItem>

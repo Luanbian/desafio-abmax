@@ -9,6 +9,9 @@ interface ListUsers {
     gender: string
     email: string
     phone: string
+    login: {
+        uuid: string
+    }
 }
 
 export default function Contacts() {
@@ -18,13 +21,13 @@ export default function Contacts() {
             <p>Todos os contatos</p>
             <br/>
             {users && users.map((user: ListUsers) => (
-                <>
+                <div key={user.login.uuid}>
                     <p>{user.name.first}</p>
                     <p>{user.name.last}</p>
                     <p>{user.email}</p>
                     <p>{user.phone}</p>
                     <br/>
-                </>
+                </div>
             ))}
             {error && (<p>{error.message}</p>)}
         </>

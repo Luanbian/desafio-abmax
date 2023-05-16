@@ -6,8 +6,8 @@ export default function Routes() {
     return (
         <BrowserRouter>
             <Paths>
-                <Route Component={Register} path='/'/>
-                <Route Component={Profile} path='/profile'/>
+                <Route Component={Register} path='/register'/>
+                <Route Component={Profile} path='/'/>
             </Paths>
         </BrowserRouter>
     )
