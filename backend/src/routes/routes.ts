@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { makeRegisterController } from "../app/factories";
+import { makeUserController } from "../app/factories";
 import { z } from 'zod';
 
 export const router = Router();
-const registerController = makeRegisterController();
+const userController = makeUserController();
 
 const RegisterSchema = z.object({
     username: z.string(),
@@ -13,6 +13,6 @@ const RegisterSchema = z.object({
 
 router.post('/register', async (req, res) => {
     const register = RegisterSchema.parse(req.body);
-    const request = await registerController.register(register);
+    const request = await userController.register(register);
     res.json(request);
 })

@@ -3,7 +3,7 @@ import knex from "../config/database";
 
 export class RegisterDatabase implements IRegisterDatabase {
     public dbName = 'users'
-    async insertRegister(register: inputNewUser) {
+    async insertUser(register: inputNewUser) {
         const result = await knex(this.dbName).insert(register);
         return result;
     }

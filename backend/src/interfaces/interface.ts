@@ -1,9 +1,9 @@
-export interface IRegisterController {
+export interface IUserController {
     register(register: inputNewUser): Promise<IHttpsResponse>;
 }
 
 export interface IRegisterDatabase {
-    insertRegister(register: inputNewUser): Promise<number[] | undefined>;
+    insertUser(register: inputNewUser): Promise<number[] | undefined>;
 }
 
 export interface IHttpsResponse {
