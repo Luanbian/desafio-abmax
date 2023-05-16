@@ -46,7 +46,23 @@ export class UserController implements IUserController{
         } catch (error) {
             return {
                 message: error.message,
-                statusCode: 400
+                statusCode: 404
+            }
+        }
+    }
+
+    public delete = async(id: string): Promise<IHttpsResponse> => {
+        try {
+            const deleteUser = await this.userDatabase.delete(id);
+            return {
+                message: 'Ok',
+                statusCode: 200,
+                data: deleteUser
+            }
+        } catch (error) {
+            return {
+                message: error.message,
+                statusCode: 404
             }
         }
     }

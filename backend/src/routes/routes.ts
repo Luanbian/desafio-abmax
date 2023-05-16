@@ -30,4 +30,9 @@ router.put('/user/:id', async (req, res) => {
     const param = IdSchema.parse(req.params)
     const update = await userController.update(body, param.id);
     res.json(update);
+});
+router.delete('/user/:id', async (req, res) => {
+    const param = IdSchema.parse(req.params);
+    const deleteUser = await userController.delete(param.id);
+    res.json(deleteUser);
 })

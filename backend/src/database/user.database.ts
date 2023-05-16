@@ -20,4 +20,9 @@ export class UserDatabase implements IUserDatabase {
         const updateUser = await knex(this.dbName).update(body).where('id', id);
         return updateUser;
     }
+
+    async delete(id: string) {
+        const deleteUser = await knex(this.dbName).delete().where('id', id);
+        return deleteUser;
+    }
 }
