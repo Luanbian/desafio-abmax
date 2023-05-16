@@ -1,4 +1,4 @@
-import { Button, Card, ListItem, UnorderedList } from "@chakra-ui/react";
+import {Button, Card, ListItem, Popover,  PopoverContent, PopoverTrigger, Portal, UnorderedList } from "@chakra-ui/react";
 import useSWR from 'swr'
 import { baseURL } from "../api/api";
 import FormUser from "./Form";
@@ -32,7 +32,16 @@ export default function Profile() {
                     <ListItem>{user.email}</ListItem>
                     <ListItem>{user.phone}</ListItem>
                     <ListItem>{user.gender}</ListItem>
-                    <FormUser method="update" id={user.id} inputs={user}/>
+                    <Popover>
+                        <PopoverTrigger>
+                            <Button variant='solid' colorScheme="green">Editar</Button>
+                        </PopoverTrigger>
+                        <Portal>
+                            <PopoverContent>
+                                <FormUser method="update" id={user.id} inputs={user}/>
+                            </PopoverContent>
+                        </Portal>
+                    </Popover>
                     <Button variant='solid' colorScheme='red' onClick={() => handleDelete(user.id)}> Delete </Button>
                 </div>
             ))}

@@ -25,7 +25,7 @@ export default function FormUser({ method, id, inputs }: FormProps) {
     const genderRef = useRef<string>('Masculino');
     const [userExist, setUserExist] = useState(false);
 
-    const handleRegister = async () => {
+    const handleSubmit = async () => {
         const { current: email } = emailRef;
         const { current: lastName } = lastNameRef;
         const { current: firstName } = firstNameRef;
@@ -66,7 +66,7 @@ export default function FormUser({ method, id, inputs }: FormProps) {
                         <Radio value='Feminino'>Feminino</Radio>
                     </HStack>
                 </RadioGroup>
-                <Button variant='solid' colorScheme='blue' onClick={handleRegister}> Cadastrar </Button>
+                <Button variant='solid' colorScheme='blue' onClick={handleSubmit}> Confirmar </Button>
                 {userExist && (
                     <CardFooter color='red'>E-mail já cadastrado</CardFooter>
                 )}
