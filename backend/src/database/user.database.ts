@@ -1,4 +1,4 @@
-import { IUserDatabase, inputNewUser } from "../interfaces/interface";
+import { IUserDatabase, inputLogin, inputNewUser } from "../interfaces/interface";
 import knex from "../config/database";
 
 export class UserDatabase implements IUserDatabase {
@@ -6,5 +6,11 @@ export class UserDatabase implements IUserDatabase {
     async insertUser(register: inputNewUser) {
         const result = await knex(this.dbName).insert(register);
         return result;
+    }
+
+    async login(login: inputLogin) {
+        const existingUser = await knex.select('email', 'password').from(this.dbName).where(login);
+        if(existingUser.length != 0) return 'Usuário já existe'
+        return existingUser;
     }
 }
