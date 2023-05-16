@@ -1,4 +1,4 @@
-import {FormControl, FormLabel, Input, Card, Button} from '@chakra-ui/react'
+import {FormControl, FormLabel, Input, Card, Button, CardFooter} from '@chakra-ui/react'
 import { useRef, useState } from 'react';
 import { baseURL } from '../api/api';
 import axios from 'axios';
@@ -22,7 +22,7 @@ export default function Register() {
                 }
                 const request = await axios.post(`${baseURL}/register`, registerRequest);
                 const response = request.data.message;
-                response == 'Ok' ? (window.location.href = '/profile') : setUserExist(true);
+                response == 'created' ? (window.location.href = '/profile') : setUserExist(true);
             }
         }
     }
@@ -38,7 +38,7 @@ export default function Register() {
                 <Input type='text' placeholder='coloque aqui uma senha' ref={passwordRef}/>
                 <Button variant='solid' colorScheme='blue' onClick={handleRegister}> Cadastrar </Button>
                 {userExist && (
-                    <p>Usuário já existe</p>
+                    <CardFooter color='red'>E-mail já cadastrado</CardFooter>
                 )}
             </FormControl>
         </Card>
