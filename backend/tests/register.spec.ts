@@ -6,9 +6,11 @@ describe('register a new user', () => {
         const registerMock = vi.fn().mockResolvedValue([1]);
         const userController = new UserController({insertUser: registerMock} as any);
         const register = {
-            username: 'Teste',
-            email: 'Teste@teste',
-            password: 'teste'
+            firstName: "Luan",
+			lastName: "Almeida",
+			email: "teste@teste",
+			phone: "15981806866",
+			gender: "Masculino"
         }
         await expect(userController.register(register)).resolves.toEqual({
             message: 'created',
