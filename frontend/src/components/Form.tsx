@@ -3,12 +3,21 @@ import { useRef, useState } from 'react';
 import { baseURL } from '../api/api';
 import axios from 'axios';
 
+interface ListUsers {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    gender: string;
+}
 interface FormProps {
     method: string
     id?: string
+    inputs?: ListUsers
 }
 
-export default function FormUser({ method, id }: FormProps) {
+export default function FormUser({ method, id, inputs }: FormProps) {
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
@@ -44,14 +53,14 @@ export default function FormUser({ method, id }: FormProps) {
         <Card maxW='sm'>
             <FormControl>
                 <FormLabel>Contato</FormLabel>
-                <Input type='text' placeholder='Nome' ref={firstNameRef}/>
-                <Input type='text' placeholder='Sobrenome' ref={lastNameRef}/>
+                <Input type='text' placeholder='Nome' ref={firstNameRef} defaultValue={inputs?.firstName}/>
+                <Input type='text' placeholder='Sobrenome' ref={lastNameRef} defaultValue={inputs?.lastName}/>
                 <FormLabel>E-mail</FormLabel>
-                <Input type='email' placeholder='coloque aqui seu e-mail' ref={emailRef}/>
+                <Input type='email' placeholder='coloque aqui seu e-mail' ref={emailRef} defaultValue={inputs?.email}/>
                 <FormLabel>Telefone</FormLabel>
-                <Input type='number' placeholder='coloque aqui o numero' ref={phoneRef}/>
+                <Input type='number' placeholder='coloque aqui o numero' ref={phoneRef} defaultValue={inputs?.phone}/>
                 <FormLabel>Genero</FormLabel>
-                <RadioGroup defaultValue='Masculino' onChange={(value) => genderRef.current = value}>
+                <RadioGroup defaultValue={inputs?.gender || 'Masculino'} onChange={(value) => genderRef.current = value}>
                     <HStack spacing='24px'>
                         <Radio value='Masculino'>Masculino</Radio>
                         <Radio value='Feminino'>Feminino</Radio>

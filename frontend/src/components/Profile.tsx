@@ -19,15 +19,15 @@ export default function Profile() {
             <h1>Seus contatos</h1>
             <UnorderedList>
             {users && users.map((user: ListUsers) => (
-                <>
+                <div key={user.id}>
                     <ListItem>{user.id}</ListItem>
                     <ListItem>{user.firstName}</ListItem>
                     <ListItem>{user.lastName}</ListItem>
                     <ListItem>{user.email}</ListItem>
                     <ListItem>{user.phone}</ListItem>
                     <ListItem>{user.gender}</ListItem>
-                    <FormUser method="update" id={user.id}/>
-                </>
+                    <FormUser method="update" id={user.id} inputs={user}/>
+                </div>
             ))}
             </UnorderedList>
             {error && <p>{error.message}</p>}
