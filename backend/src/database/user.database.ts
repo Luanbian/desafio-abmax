@@ -5,7 +5,7 @@ export class UserDatabase implements IUserDatabase {
     public dbName = 'users'
     async insertUser(register: inputNewUser) {
         const existingUser = await knex.select('email').from(this.dbName).where('email', register.email);
-        if(existingUser.length != 0) return Promise.reject({message: 'Usuário já existe'});
+        if(existingUser.length != 0) return Promise.reject({message: 'E-mail já registrado'});
         const result = await knex(this.dbName).insert(register);
         return result;
     }

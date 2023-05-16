@@ -6,9 +6,11 @@ export const router = Router();
 const userController = makeUserController();
 
 const RegisterSchema = z.object({
-    username: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
     email: z.string(),
-    password: z.string()
+    phone: z.string(),
+    gender: z.string()
 })
 
 router.post('/register', async (req, res) => {
