@@ -25,7 +25,7 @@ export default function Register() {
                 phone: phone.value,
                 gender: gender
             }
-            const request = await axios.post(`${baseURL}/register`, registerRequest);
+            const request = await axios.post(`${baseURL}/user`, registerRequest);
             const response = request.data.message;
             response == 'created' ? (window.location.href = '/profile') : setUserExist(true);
         }
