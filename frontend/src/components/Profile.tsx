@@ -3,6 +3,7 @@ import useSWR from 'swr'
 import { baseURL } from "../api/api";
 import FormUser from "./Form";
 import axios from "axios";
+import Contacts from "./Contacts";
 
 interface ListUsers {
     id: string;
@@ -45,6 +46,7 @@ export default function Profile() {
                 </div>
             ))}
             </UnorderedList>
+            <Contacts/>
             {error && <p>{error.message}</p>}
         </Card>
     )

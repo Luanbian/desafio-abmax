@@ -9,7 +9,7 @@ export class UserController implements IUserController{
             return {
                 message: 'created',
                 statusCode: 200,
-                data: newRegister
+                results: newRegister
             }
         } catch (error) {
             return {
@@ -25,7 +25,7 @@ export class UserController implements IUserController{
             return {
                 message: 'Ok',
                 statusCode: 200,
-                data: listUsers
+                results: listUsers
             }
         } catch (error) {
             return {
@@ -41,7 +41,7 @@ export class UserController implements IUserController{
             return {
                 message: 'Ok',
                 statusCode: 200,
-                data: updateUser
+                results: updateUser
             }
         } catch (error) {
             return {
@@ -57,7 +57,7 @@ export class UserController implements IUserController{
             return {
                 message: 'Ok',
                 statusCode: 200,
-                data: deleteUser
+                results: deleteUser
             }
         } catch (error) {
             return {

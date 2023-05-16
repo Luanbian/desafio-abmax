@@ -15,7 +15,7 @@ export interface IUserDatabase {
 export interface IHttpsResponse {
   message?: string;
   statusCode?: number;
-  data?: any;
+  results?: any;
 }
 
 export interface inputUser {

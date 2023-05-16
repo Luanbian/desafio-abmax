@@ -7,8 +7,7 @@ export default function App() {
     <>
       <SWRConfig 
         value={{
-          refreshInterval: 3000,
-          fetcher: (url: string) => axios.get(url).then(res => res.data.data)
+          fetcher: (url: string) => axios.get(url).then(res => res.data.results)
         }}
       >
         <Routes/>
