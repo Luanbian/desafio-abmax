@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import { baseURL } from '../api/api'
+import { CardContact, ContainerContate } from '../style/style'
 
 interface ListContacts {
     first: string,
@@ -13,20 +14,20 @@ interface ListContacts {
 export default function Contacts() {
     const {data: contacts, error} = useSWR<ListContacts[]>(`${baseURL}/contacts`);
     return (
-        <>
-            <p>Todos os contatos</p>
+        <ContainerContate>
+            <h1>Todos os contatos</h1>    
             <br/>
             {contacts && contacts.map((contact: ListContacts) => (
-                <div key={contact.uuid}>
+                <CardContact key={contact.uuid}>
                     <p>{contact.first}</p>
                     <p>{contact.last}</p>
                     <p>{contact.email}</p>
                     <p>{contact.phone}</p>
                     <br/>
-                </div>
+                </CardContact>
 
             ))}
             {error && (<p>{error.message}</p>)}
-        </>
+        </ContainerContate>
     )
 }
