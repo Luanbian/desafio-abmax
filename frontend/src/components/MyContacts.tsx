@@ -42,7 +42,7 @@ export default function MyContacts() {
                             <ListItem>Sobrenome: {user.lastName}</ListItem>
                             <ListItem>Email: {user.email}</ListItem>
                             <ListItem>Telefone: {user.phone}</ListItem>
-                            <ListItem>Genero: {user.gender}</ListItem>
+                            <ListItem>Gênero: {user.gender}</ListItem>
                             <Container>
                                 <Popover>
                                     <PopoverTrigger>
