@@ -1,6 +1,6 @@
-import { inputUser, IUserController, IHttpsResponse, IUserDatabase, inputLogin } from "../interfaces/interface";
+import { inputUser, IContactController, IHttpsResponse, IUserDatabase } from "../interfaces/interface";
 
-export class UserController implements IUserController{
+export class ContactController implements IContactController{
     constructor(private readonly userDatabase: IUserDatabase){}
 
     public register = async (register: inputUser): Promise<IHttpsResponse> => {
@@ -37,11 +37,10 @@ export class UserController implements IUserController{
 
     public update = async(body: inputUser, id: string): Promise<IHttpsResponse> => {
         try {
-            const updateUser = await this.userDatabase.update(body, id);
+            await this.userDatabase.update(body, id);
             return {
                 message: 'Ok',
                 statusCode: 200,
-                results: updateUser
             }
         } catch (error) {
             return {
@@ -53,11 +52,10 @@ export class UserController implements IUserController{
 
     public delete = async(id: string): Promise<IHttpsResponse> => {
         try {
-            const deleteUser = await this.userDatabase.delete(id);
+            await this.userDatabase.delete(id);
             return {
                 message: 'Ok',
                 statusCode: 200,
-                results: deleteUser
             }
         } catch (error) {
             return {

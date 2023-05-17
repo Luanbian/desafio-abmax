@@ -1,9 +1,10 @@
-import { Router, json } from "express";
-import { makeUserController } from "../app/factories";
+import { Router } from "express";
+import { makeContactController, makeRandomGateway } from "../app/factories";
 import { z } from 'zod';
 
 export const router = Router();
-const userController = makeUserController();
+const contactController = makeContactController();
+const randomGateway = makeRandomGateway();
 
 const UserSchema = z.object({
     firstName: z.string(),
@@ -18,21 +19,26 @@ const IdSchema = z.object({
 
 router.post('/user', async (req, res) => {
     const body = UserSchema.parse(req.body);
-    const request = await userController.register(body);
+    const request = await contactController.register(body);
     res.json(request);
 });
 router.get('/user', async (_, res) => {
-    const response = await userController.listUsers();
+    const response = await contactController.listUsers();
     res.json(response);
 });
 router.put('/user/:id', async (req, res) => {
     const body = UserSchema.parse(req.body);
     const param = IdSchema.parse(req.params)
-    const update = await userController.update(body, param.id);
+    const update = await contactController.update(body, param.id);
     res.json(update);
 });
 router.delete('/user/:id', async (req, res) => {
     const param = IdSchema.parse(req.params);
-    const deleteUser = await userController.delete(param.id);
+    const deleteUser = await contactController.delete(param.id);
     res.json(deleteUser);
+});
+
+router.get('/contacts', async (req, res) => {
+    const response = await randomGateway.getRandomData();
+    res.json(response);
 })

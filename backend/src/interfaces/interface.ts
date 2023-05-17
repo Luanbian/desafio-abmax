@@ -1,4 +1,4 @@
-export interface IUserController {
+export interface IContactController {
   register(register: inputUser): Promise<IHttpsResponse>;
   listUsers(): Promise<IHttpsResponse>;
   update(body: inputUser, id: string): Promise<IHttpsResponse>;
@@ -8,8 +8,25 @@ export interface IUserController {
 export interface IUserDatabase {
   insertUser(register: inputUser): Promise<number[] | undefined>;
   listUsers(): Promise<any[]>;
-  update(body: inputUser, id: string): Promise<number | undefined>;
-  delete(id: string): Promise<number | undefined>;
+  update(body: inputUser, id: string): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+export interface IRandomGateway {
+  getRandomData():Promise<any>;
+}
+
+export interface AtributtesGateway {
+  login: {
+    uuid: string
+  }
+  name: {
+    first: string,
+    last: string
+  }
+  email: string,
+  phone: string,
+  gender: string
 }
 
 export interface IHttpsResponse {

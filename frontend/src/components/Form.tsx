@@ -17,6 +17,7 @@ interface FormProps {
     inputs?: ListUsers
 }
 
+// todo tirar method
 export default function FormUser({ method, id, inputs }: FormProps) {
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);

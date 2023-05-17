@@ -1,33 +1,30 @@
 import useSWR from 'swr'
+import { baseURL } from '../api/api'
 
-
-interface ListUsers {
-    name: {
-        first: string,
-        last: string
-    }
+interface ListContacts {
+    first: string,
+    last: string
     gender: string
     email: string
     phone: string
-    login: {
-        uuid: string
-    }
+    uuid: string
 }
 
 export default function Contacts() {
-    const {data: users, error} = useSWR<ListUsers[]>('https://randomuser.me/api/?results=10');
+    const {data: contacts, error} = useSWR<ListContacts[]>(`${baseURL}/contacts`);
     return (
         <>
             <p>Todos os contatos</p>
             <br/>
-            {users && users.map((user: ListUsers) => (
-                <div key={user.login.uuid}>
-                    <p>{user.name.first}</p>
-                    <p>{user.name.last}</p>
-                    <p>{user.email}</p>
-                    <p>{user.phone}</p>
+            {contacts && contacts.map((contact: ListContacts) => (
+                <div key={contact.uuid}>
+                    <p>{contact.first}</p>
+                    <p>{contact.last}</p>
+                    <p>{contact.email}</p>
+                    <p>{contact.phone}</p>
                     <br/>
                 </div>
+
             ))}
             {error && (<p>{error.message}</p>)}
         </>

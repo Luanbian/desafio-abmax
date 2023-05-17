@@ -2,27 +2,29 @@ import { IUserDatabase, inputUser } from "../interfaces/interface";
 import knex from "../config/database";
 
 export class UserDatabase implements IUserDatabase {
-    public dbName = 'users'
+    private table = 'users'
     async insertUser(register: inputUser) {
-        const existingUser = await knex.select('email').from(this.dbName).where('email', register.email);
-        if(existingUser.length != 0) return Promise.reject({message: 'E-mail já registrado'});
-        const result = await knex(this.dbName).insert(register);
+        const existingUser = await knex.select('email').from(this.table).where('email', register.email);
+        if(existingUser.length != 0) return Promise.reject({message: 'E-mail already used'});
+        const result = await knex(this.table).insert(register);
         return result;
     }
 
     async listUsers() {
-        const list = await knex.select('*').from(this.dbName);
+        const list = await knex.select('*').from(this.table);
         if(list.length == 0) return Promise.reject({message: 'no-content'});
         return list;
     }
 
     async update(body: inputUser, id: string) {
-        const updateUser = await knex(this.dbName).update(body).where('id', id);
-        return updateUser;
+        const consult = await knex.select('id').from(this.table).where('id', id);
+        if(consult.length == 0) return Promise.reject({message: 'not found'})
+        await knex(this.table).update(body).where('id', id);
     }
 
     async delete(id: string) {
-        const deleteUser = await knex(this.dbName).delete().where('id', id);
-        return deleteUser;
+        const consult = await knex.select('id').from(this.table).where('id', id);
+        if(consult.length == 0) return Promise.reject({message: 'not found'})
+        await knex(this.table).delete().where('id', id);
     }
 }
