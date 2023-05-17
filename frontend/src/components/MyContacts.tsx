@@ -15,7 +15,7 @@ interface ListUsers {
     gender: string;
 }
 
-export default function Profile() {
+export default function MyContacts() {
     const { data: users, error } = useSWR<ListUsers[]>(`${baseURL}/user`);
 
     const handleDelete = async (id: string) => {
