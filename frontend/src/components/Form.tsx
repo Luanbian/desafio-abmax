@@ -12,13 +12,11 @@ interface ListUsers {
     gender: string;
 }
 interface FormProps {
-    method: string
     id?: string
     inputs?: ListUsers
 }
 
-// todo tirar method
-export default function FormUser({ method, id, inputs }: FormProps) {
+export default function FormUser({ id, inputs }: FormProps) {
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
@@ -40,12 +38,12 @@ export default function FormUser({ method, id, inputs }: FormProps) {
                 phone: phone.value,
                 gender: gender
             }
-            if(method === 'create') {
+            if(id) {
+                await axios.put(`${baseURL}/user/${id}`, registerRequest);
+            } else {
                 const request = await axios.post(`${baseURL}/user`, registerRequest);
                 const response = request.data.message;
                 response == 'created' ? (window.location.href = '/') : setUserExist(true);
-            } else {
-                await axios.put(`${baseURL}/user/${id}`, registerRequest);
             }
         }
     }

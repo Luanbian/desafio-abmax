@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {Button, Card, ListItem, Popover,  PopoverContent, PopoverTrigger, Portal, UnorderedList } from "@chakra-ui/react";
 import useSWR from 'swr'
 import { baseURL } from "../api/api";
@@ -16,9 +17,13 @@ interface ListUsers {
 }
 
 export default function MyContacts() {
-    const { data: users, error } = useSWR<ListUsers[]>(`${baseURL}/user`);
+    const { data: users = [], error, mutate } = useSWR<ListUsers[]>(`${baseURL}/user`);
 
     const handleDelete = async (id: string) => {
+        const index = users?.findIndex(user => user.id === id)
+        const newDatas = [...users]
+        newDatas.splice(index!, 1)
+        mutate(newDatas)
         await axios.delete(`${baseURL}/user/${id}`)
     }
 
@@ -42,7 +47,7 @@ export default function MyContacts() {
                         </PopoverTrigger>
                         <Portal>
                             <PopoverContent>
-                                <FormUser method="update" id={user.id} inputs={user}/>
+                                <FormUser id={user.id} inputs={user}/>
                             </PopoverContent>
                         </Portal>
                     </Popover>
