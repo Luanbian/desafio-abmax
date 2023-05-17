@@ -1,5 +1,6 @@
-import { ContactController } from "../controllers/user.controller";
+import { ContactController } from "../controllers/contact.controller";
 import { UserDatabase } from "../database/user.database";
+import { RandomGatewayController } from "../controllers/random.controller.gateway";
 import { RandomGateway } from "../gateway/random.gateway";
 
 export const makeUserDatabase = () => {
@@ -11,4 +12,8 @@ export const makeContactController = () => {
 }
 export const makeRandomGateway = () => {
     return new RandomGateway();
+}
+export const makeRandomGatewayController = () => {
+    const randomGareway = makeRandomGateway();
+    return new RandomGatewayController(randomGareway);
 }

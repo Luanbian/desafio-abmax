@@ -1,5 +1,5 @@
 import { expect, it, describe, vi } from "vitest";
-import { ContactController } from "../src/controllers/user.controller";
+import { ContactController } from "../src/controllers/contact.controller";
 
 describe('List of all contanct in db', () => {
     it('should be able to list contacts from users', async () => {

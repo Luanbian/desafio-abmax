@@ -1,5 +1,5 @@
 import { expect, it, describe, vi } from "vitest";
-import { ContactController } from "../src/controllers/user.controller";
+import { ContactController } from "../src/controllers/contact.controller";
 
 describe('delete one contact by id', () => {
     it('should be able to delete an contact by id', async () => {

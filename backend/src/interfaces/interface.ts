@@ -12,8 +12,11 @@ export interface IUserDatabase {
   delete(id: string): Promise<void>;
 }
 
+export interface IRandomController {
+  getRandomContact(): Promise<IHttpsResponse>
+}
 export interface IRandomGateway {
-  getRandomData():Promise<any>;
+  getRandomContact(): Promise<AtributtesGateway[]>;
 }
 
 export interface AtributtesGateway {

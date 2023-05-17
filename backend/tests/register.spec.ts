@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { ContactController } from '../src/controllers/user.controller';
+import { ContactController } from '../src/controllers/contact.controller';
 
 describe('register a new user', () => {
     it('should be able to register a new user', async () => {

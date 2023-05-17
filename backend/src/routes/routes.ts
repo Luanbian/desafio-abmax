@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { makeContactController, makeRandomGateway } from "../app/factories";
+import { makeContactController, makeRandomGatewayController } from "../app/factories";
 import { z } from 'zod';
 
 export const router = Router();
 const contactController = makeContactController();
-const randomGateway = makeRandomGateway();
+const randomGateway = makeRandomGatewayController();
 
 const UserSchema = z.object({
     firstName: z.string(),
@@ -39,6 +39,6 @@ router.delete('/user/:id', async (req, res) => {
 });
 
 router.get('/contacts', async (req, res) => {
-    const response = await randomGateway.getRandomData();
+    const response = await randomGateway.getRandomContact();
     res.json(response);
 })
