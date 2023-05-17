@@ -57,12 +57,12 @@ export default function FormUser({ id, inputs }: FormProps) {
                 <FormLabel>E-mail</FormLabel>
                 <Input type='email' placeholder='coloque aqui seu e-mail' ref={emailRef} defaultValue={inputs?.email}/>
                 <FormLabel>Telefone</FormLabel>
-                <Input type='number' placeholder='coloque aqui o numero' ref={phoneRef} defaultValue={inputs?.phone}/>
+                <Input type='text' placeholder='coloque aqui o numero' ref={phoneRef} defaultValue={inputs?.phone}/>
                 <FormLabel>Genero</FormLabel>
-                <RadioGroup defaultValue={inputs?.gender || 'Masculino'} onChange={(value) => genderRef.current = value}>
+                <RadioGroup defaultValue={inputs?.gender} onChange={(value) => genderRef.current = value}>
                     <HStack spacing='24px'>
-                        <Radio value='Masculino'>Masculino</Radio>
-                        <Radio value='Feminino'>Feminino</Radio>
+                        <Radio value='male'>Masculino</Radio>
+                        <Radio value='female'>Feminino</Radio>
                     </HStack>
                 </RadioGroup>
                 <Button variant='solid' colorScheme='blue' onClick={handleSubmit}> Confirmar </Button>
